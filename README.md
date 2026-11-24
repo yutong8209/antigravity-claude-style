@@ -15,6 +15,14 @@
 
 ## 新电脑一键安装
 
+### 方式一：AI 一键安装（直接发给新电脑上的 Antigravity）
+
+直接把下面这段话发给新电脑上的 Antigravity：
+
+> 请帮我拉取私有仓库 `https://github.com/yutong8209/antigravity-claude-style.git`（如需要权限可用 `gh repo clone`），读取里面的 `SKILL.md` 并执行 `node install.mjs install` 完成 Claude Code 风格主题、字体与 Clawd 小螃蟹安装，最后运行 `doctor` 确认注入生效（注意不要在对话中强制重启 Antigravity 自身）。
+
+### 方式二：终端命令行安装
+
 > 前置要求：Node.js >= 22.13.0，已安装 Google Antigravity。
 
 ```bash
