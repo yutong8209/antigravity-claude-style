@@ -19,7 +19,7 @@
 
 直接把下面这段话发给新电脑上的 Antigravity：
 
-> 请帮我拉取私有仓库 `https://github.com/yutong8209/antigravity-claude-style.git`（如需要权限可用 `gh repo clone`），读取里面的 `SKILL.md` 并执行 `node install.mjs install` 完成 Claude Code 风格主题、字体与 Clawd 小螃蟹安装，最后运行 `doctor` 确认注入生效（注意不要在对话中强制重启 Antigravity 自身）。
+> 请帮我拉取仓库 `https://github.com/yutong8209/antigravity-claude-style.git`，读取里面的 `SKILL.md` 并执行 `node install.mjs install` 完成 Claude Code 风格主题、字体与 Clawd 小螃蟹安装，最后运行 `doctor` 确认注入生效（注意不要在对话中强制重启 Antigravity 自身）。
 
 ### 方式二：终端命令行安装
 
@@ -42,3 +42,9 @@ node ~/.gemini/antigravity/codex-theme/install.mjs relaunch
 - `node install.mjs install --sync-config`：同时用仓库里的 `user/config.json` 覆盖本地配置（默认保留现有 `config.json` 里的 `sshHosts` 等个人配置，仅确保开启 `customCss`/`customJs`）。
 - `node install.mjs install --skip-fonts`：跳过字体安装。
 - `node install.mjs export`：把本地 `~/.gemini/antigravity/codex-theme/user/` 的最新改动导出回仓库，方便提交推送到 GitHub。
+
+## 鸣谢与说明
+
+- 配色令牌、排版规范与 Clawd 像素帧图移植自 [Nwflower/dsh-claude-style](https://github.com/Nwflower/dsh-claude-style)。
+- 注入框架基于 [nkjDSLcvanv/antigravity-codex-theme](https://github.com/nkjDSLcvanv/antigravity-codex-theme)。
+- `fonts/` 中的 Anthropic 字体副本与 Clawd 角色帧图仅作个人外观还原与学习研究使用，与 Anthropic 官方无关联。

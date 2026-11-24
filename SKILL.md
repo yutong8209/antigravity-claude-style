@@ -10,7 +10,7 @@ Follow this guide when the user asks you to install or update **`antigravity-cla
 ## Prerequisites
 - **Node.js `>= 22.13.0`**
 - **Google Antigravity** installed
-- **`git`** (and `gh` or git credentials if cloning the private repository `https://github.com/yutong8209/antigravity-claude-style.git`)
+- **`git`** (to clone `https://github.com/yutong8209/antigravity-claude-style.git`)
 
 ## One-Step Installation Workflow
 
@@ -19,7 +19,6 @@ Follow this guide when the user asks you to install or update **`antigravity-cla
    git clone --depth=1 https://github.com/yutong8209/antigravity-claude-style.git
    cd antigravity-claude-style
    ```
-   *(If `git clone` fails because the repo is private and git isn't authenticated yet, try `gh repo clone yutong8209/antigravity-claude-style` or ask the user to sign in with `gh auth login`.)*
 
 2. Run the installer:
    ```bash
