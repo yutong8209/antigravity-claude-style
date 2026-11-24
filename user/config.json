@@ -1,0 +1,22 @@
+{
+  "enabled": true,
+  "channel": "auto",
+  "preset": "codex-pure-white",
+  "telemetryLayout": "compact",
+  "telemetryCacheMode": "session",
+  "contextLimit": "auto",
+  "modules": {
+    "theme": true,
+    "i18n": true,
+    "metrics": true,
+    "sshRemote": false,
+    "promptSuggestions": true,
+    "deadlockHealer": true,
+    "zoomShortcuts": true,
+    "cdpAutoRelaunch": true,
+    "customCss": true,
+    "customJs": true
+  },
+  "sshHosts": [],
+  "themeVars": {}
+}

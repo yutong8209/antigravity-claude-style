@@ -1,0 +1,650 @@
+/*
+ * antigravity-codex-theme · Claude Code Desktop Style Override (Hot-Reloaded)
+ * Ported from Nwflower/dsh-claude-style design tokens & typography.
+ */
+
+/* ============================================================================
+ * 1. Typography: Anthropic Sans (UI) + Anthropic Serif (Prose) + Anthropic Mono
+ * ============================================================================ */
+@font-face {
+  font-family: 'Claude Style Symbols';
+  src: local('FiraCode Nerd Font'), local('Fira Code'), local('JetBrains Mono'), local('SF Mono'), local('Menlo');
+  font-weight: 100 800;
+  font-style: normal;
+  unicode-range: U+00A7, U+2190-21FF, U+2200-22FF;
+}
+
+:root,
+html,
+body,
+body[data-agy-theme],
+body[data-agy-font],
+html[data-ag-preset],
+html[data-ag-preset] body {
+  --vscode-font-family: 'Anthropic Sans Web Text', 'Anthropic Sans', 'Claude Style Symbols', 'Noto Sans SC', 'PingFang SC', 'Hiragino Sans GB', -apple-system, BlinkMacSystemFont, 'Microsoft YaHei', system-ui, sans-serif !important;
+  --font-sans: 'Anthropic Sans Web Text', 'Anthropic Sans', 'Claude Style Symbols', 'Noto Sans SC', 'PingFang SC', 'Hiragino Sans GB', -apple-system, BlinkMacSystemFont, 'Microsoft YaHei', system-ui, sans-serif !important;
+  --default-font-family: var(--font-sans) !important;
+  --font-mono: 'Anthropic Mono Web', 'Anthropic Mono', 'FiraCode Nerd Font Mono', 'JetBrains Mono', 'SF Mono', 'Noto Sans SC', 'PingFang SC', Menlo, Monaco, ui-monospace, Consolas, monospace !important;
+  --editor-font-family: var(--font-mono) !important;
+  --default-mono-font-family: var(--font-mono) !important;
+  --ag-claude-serif: 'Anthropic Serif Web Text', 'Anthropic Serif', 'Claude Style Symbols', 'Noto Sans SC', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', Georgia, serif;
+}
+
+/* Conversation prose & headings use Anthropic Serif for Latin + Noto Sans SC / PingFang SC for CJK */
+html[data-ag-preset] :is([data-markdown-root], .prose, .markdown, article),
+html[data-ag-preset] :is([data-markdown-root], .prose, .markdown, article) :is(p, li, blockquote, h1, h2, h3, h4, h5, h6, td, th),
+html[data-ag-preset] :is(h1, h2, h3, h4, [data-testid="home-greeting"], [data-testid="home-splash-content"] h1, [data-testid="home-splash-content"] h2, [role="dialog"] :is(h1, h2, h3)) {
+  font-family: var(--ag-claude-serif) !important;
+  letter-spacing: normal !important;
+}
+
+html[data-ag-preset] :is([data-markdown-root], .prose, .markdown) :is(p, li, blockquote) {
+  line-height: 1.62 !important;
+}
+
+html[data-ag-preset] :is([data-markdown-root], .prose, .markdown) p {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+html[data-ag-preset] :is([data-markdown-root], .prose, .markdown) :is(h1, h2, h3, h4) {
+  font-weight: 600 !important;
+  line-height: 1.28 !important;
+}
+
+html[data-ag-preset] :is([data-markdown-root], .prose, .markdown) :is(h1, h2, h3) {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+/* Technical meta (model selector trigger) in compact 12px mono like dsh-claude-style */
+html[data-ag-preset] #antigravity\.agentSidePanelInputBox [data-testid="model-selector-trigger"],
+html[data-ag-preset] #antigravity\.agentSidePanelInputBox [data-testid="model-selector-trigger"] span,
+html[data-ag-preset] [data-testid="model-selector-trigger"],
+html[data-ag-preset] [data-testid="model-selector-trigger"] span {
+  font-family: var(--font-mono) !important;
+  font-size: 12px !important;
+  letter-spacing: 0 !important;
+}
+
+/* Smooth 120Hz compositor-friendly transitions for sidebar & buttons */
+html[data-ag-preset] :is(.agy-sidebar-row, [data-testid="conversation-row-sidebar"], button, [role="menuitem"]) {
+  transition-timing-function: cubic-bezier(0.2, 0, 0, 1) !important;
+}
+
+/* Keep user message bubble & input box in clean Sans */
+html[data-ag-preset] [data-testid="user-message-content"],
+html[data-ag-preset] [data-testid="user-message-content"] :is(.select-text, p, li, span, div),
+html[data-ag-preset] .agy-user-bubble,
+html[data-ag-preset] .agy-user-bubble :is(p, li, span, div),
+html[data-ag-preset] #antigravity\.agentSidePanelInputBox [data-lexical-editor="true"],
+html[data-ag-preset] #antigravity\.agentSidePanelInputBox [data-lexical-editor="true"] :is(p, span, div) {
+  font-family: var(--font-sans) !important;
+}
+
+/* Strictly keep code & file paths in Anthropic Mono */
+html[data-ag-preset] :is(code, pre, kbd, samp, .font-mono, [class*="language-"], .monaco-editor, .xterm, pre *),
+html[data-ag-preset] :is([data-markdown-root], .select-text, .prose, .markdown) :is(code, pre, kbd, samp, .font-mono, pre *) {
+  font-family: var(--font-mono) !important;
+}
+
+/* ============================================================================
+ * 2. Light Mode Palette (Claude Light: Warm White + Terracotta Orange)
+ * ============================================================================ */
+html[data-ag-preset]:not([data-ag-theme-mode="dark"]):not(:has(> body.dark)),
+html[data-ag-preset]:not([data-ag-theme-mode="dark"]) body:not(.dark) {
+  --primary: #d97757 !important;
+  --primary-foreground: #ffffff !important;
+  --editor-selection-background: rgba(217, 119, 87, 0.20) !important;
+
+  --background: #ffffff !important;
+  --content: #ffffff !important;
+  --foreground: #161616 !important;
+  --secondary-foreground: #161616 !important;
+  --muted-foreground: #70696b !important;
+  --placeholder: #91888b !important;
+
+  --sidebar: #fafafa !important;
+  --shell: #fafafa !important;
+  --vscode-sideBar-background: #fafafa !important;
+  --sidebar-secondary: #efefef !important;
+  --sidebar-muted: #f4f4f4 !important;
+  --sidebar-border: rgba(22, 22, 22, 0.06) !important;
+
+  --border: #e9e9e9 !important;
+  --card: #ffffff !important;
+  --card-border: #e9e9e9 !important;
+  --card-edge: rgba(22, 22, 22, 0.07) !important;
+  --sash-line: rgba(22, 22, 22, 0.07) !important;
+  --link: #184f95 !important;
+
+  --ag-composer-tray-bg: #f4f2f3;
+  --ag-composer-tray-border: rgba(22, 22, 22, 0.05);
+  --ag-composer-card-bg: #ffffff;
+  --ag-composer-card-border: #dedede;
+  --ag-composer-card-shadow: 0 4px 18px rgba(20, 20, 19, 0.06), 0 1px 3px rgba(20, 20, 19, 0.04);
+  --ag-composer-card-focus-border: rgba(217, 119, 87, 0.50);
+  --ag-composer-card-focus-shadow: 0 6px 24px rgba(20, 20, 19, 0.08), 0 2px 6px rgba(217, 119, 87, 0.08);
+  --ag-composer-top-fg: #161616;
+  --ag-composer-top-hover-bg: rgba(22, 22, 22, 0.06);
+  --ag-composer-top-hover-fg: #161616;
+  --ag-composer-ctrl-fg: #161616;
+
+  --ag-send-btn-bg: #d97757;
+  --ag-send-btn-hover-bg: #c46343;
+  --ag-send-btn-border: #d97757;
+  --ag-send-btn-shadow: 0 2px 6px rgba(217, 119, 87, 0.28);
+
+  --ag-sidebar-fg: #161616;
+  --ag-sidebar-row-fg: #262524;
+  --ag-sidebar-header-fg: #70696b;
+  --ag-sidebar-header-title-fg: #161616;
+  --ag-sidebar-selected-fg: #161616;
+  --ag-sidebar-muted-fg: #70696b;
+  --code-foreground: #161616 !important;
+}
+
+/* ============================================================================
+ * 3. Dark Mode Palette (Claude Dark: Warm Charcoal #191919 + Terracotta)
+ * ============================================================================ */
+html[data-ag-theme-mode="dark"],
+html[data-ag-theme-mode="dark"] body,
+html[data-ag-preset] body.dark,
+html[data-ag-preset] body[data-agy-theme].dark {
+  --primary: #d97757 !important;
+  --primary-foreground: #fbfbfb !important;
+  --editor-selection-background: rgba(217, 119, 87, 0.30) !important;
+  --editor-comment-selection-background: rgba(217, 119, 87, 0.20) !important;
+
+  --background: #191919 !important;
+  --content: #191919 !important;
+  --foreground: #fdfdfd !important;
+  --secondary-foreground: #eae6e7 !important;
+  --muted-foreground: #9c9395 !important;
+  --placeholder: #776f71 !important;
+
+  --shell: #1f1f1f !important;
+  --sidebar: #1f1f1f !important;
+  --vscode-sideBar-background: #1f1f1f !important;
+  --sidebar-secondary: #2c2c2c !important;
+  --sidebar-muted: rgba(255, 255, 255, 0.06) !important;
+  --sidebar-border: rgba(255, 255, 255, 0.06) !important;
+
+  --card: #232323 !important;
+  --card-border: rgba(255, 255, 255, 0.09) !important;
+  --card-edge: rgba(255, 255, 255, 0.08) !important;
+  --sash-line: rgba(255, 255, 255, 0.08) !important;
+  --border: rgba(255, 255, 255, 0.09) !important;
+  --glass: #282828 !important;
+  --glass-border: rgba(255, 255, 255, 0.09) !important;
+  --onyx-frame: #212121 !important;
+  --onyx-well: #1f1f1f !important;
+  --onyx-raised: #282828 !important;
+  --onyx-selected: #2c2c2c !important;
+  --onyx-key: #282828 !important;
+  --link: #8ab4f8 !important;
+
+  --ag-composer-tray-bg: #212121;
+  --ag-composer-tray-border: rgba(255, 255, 255, 0.06);
+  --ag-composer-card-bg: #282828;
+  --ag-composer-card-border: rgba(255, 255, 255, 0.10);
+  --ag-composer-card-shadow: 0 4px 16px rgba(0, 0, 0, 0.30), 0 1px 3px rgba(0, 0, 0, 0.18);
+  --ag-composer-card-focus-border: rgba(217, 119, 87, 0.55);
+  --ag-composer-card-focus-shadow: 0 6px 24px rgba(0, 0, 0, 0.40), 0 0 0 1px rgba(217, 119, 87, 0.18);
+  --ag-composer-top-fg: #beb6b8;
+  --ag-composer-top-hover-bg: rgba(255, 255, 255, 0.08);
+  --ag-composer-top-hover-fg: #fdfdfd;
+  --ag-composer-ctrl-fg: #dedede;
+
+  --ag-send-btn-bg: #d97757;
+  --ag-send-btn-hover-bg: #eb9170;
+  --ag-send-btn-border: rgba(255, 255, 255, 0.12);
+  --ag-send-btn-shadow: 0 2px 6px rgba(0, 0, 0, 0.30);
+
+  --ag-sidebar-fg: #eae6e7;
+  --ag-sidebar-row-fg: #beb6b8;
+  --ag-sidebar-header-fg: #9c9395;
+  --ag-sidebar-header-title-fg: #fdfdfd;
+  --ag-sidebar-selected-fg: #fdfdfd;
+  --ag-sidebar-muted-fg: #9c9395;
+  --code-foreground: #fdfdfd !important;
+}
+
+/* Dark mode composer container overrides (match & outrank 20-dark-codex specificity) */
+html[data-ag-theme-mode="dark"] body :is(#antigravity\.agentSidePanelInputBox, [id="antigravity.agentSidePanelInputBox"], .surface-composer.bg-card-border) {
+  background-color: #212121 !important;
+  border-color: rgba(255, 255, 255, 0.06) !important;
+}
+
+html[data-ag-theme-mode="dark"] body :is(
+  .surface-composer > .surface-composer-card,
+  .surface-composer-card.bg-card,
+  [id="antigravity.agentSidePanelInputBox"] .surface-composer-card,
+  [id="antigravity.agentSidePanelInputBox"] > div.bg-card
+) {
+  background-color: #282828 !important;
+  border-color: rgba(255, 255, 255, 0.10) !important;
+}
+
+html[data-ag-theme-mode="dark"] body :is(
+  .surface-composer:focus-within > .surface-composer-card,
+  .surface-composer-card:focus-within,
+  [id="antigravity.agentSidePanelInputBox"]:focus-within .surface-composer-card
+) {
+  border-color: rgba(217, 119, 87, 0.55) !important;
+}
+
+/* ============================================================================
+ * 4. Sidebar, User Bubble & Markdown Polish
+ * ============================================================================ */
+html[data-ag-preset] .agy-sidebar-row[data-selected="true"],
+html[data-ag-preset] [data-testid="conversation-row-sidebar"][data-selected="true"] {
+  border-radius: 8px !important;
+}
+
+html[data-ag-theme-mode="dark"] :is([data-testid="conversation-row-sidebar"][data-selected="true"], .agy-sidebar-row[data-selected="true"]) {
+  background-color: #2c2c2c !important;
+  --row-bg: #2c2c2c !important;
+}
+
+/* User message warm bubble */
+html[data-ag-preset]:not([data-ag-theme-mode="dark"]) :is(.agy-user-bubble, [data-testid="user-message-content"]) {
+  background-color: #f4f2f3 !important;
+  border-radius: 12px !important;
+}
+
+html[data-ag-theme-mode="dark"] :is(.agy-user-bubble, [data-testid="user-message-content"]) {
+  background-color: rgba(255, 255, 255, 0.06) !important;
+  border-radius: 12px !important;
+}
+
+/* Editorial blockquote, inline code chip (1px smaller + 1px border), hr & links */
+html[data-ag-preset] [data-markdown-root] blockquote {
+  font-style: normal !important;
+  color: var(--muted-foreground) !important;
+  border-left: 2px solid var(--muted-foreground) !important;
+  background: rgba(250, 249, 245, 0.04);
+  border-radius: 0 8px 8px 0 !important;
+  padding: 0.55em 1em !important;
+}
+
+html[data-ag-preset] [data-markdown-root] pre,
+html[data-ag-preset] [data-markdown-root] pre code {
+  font-size: calc(1em - 1px) !important;
+  font-weight: 500 !important;
+}
+
+html[data-ag-preset] [data-markdown-root] :not(pre) > code {
+  font-size: calc(1em - 1px) !important;
+  line-height: 1.2 !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 4px !important;
+  padding: 1px 4px !important;
+}
+
+html[data-ag-preset]:not([data-ag-theme-mode="dark"]) [data-markdown-root] :not(pre) > code {
+  background-color: rgba(6, 6, 6, 0.05) !important;
+  color: #161616 !important;
+}
+
+html[data-ag-theme-mode="dark"] [data-markdown-root] :not(pre) > code {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  color: #fdfdfd !important;
+}
+
+html[data-ag-preset] [data-markdown-root] hr {
+  border: none !important;
+  border-top: 0.5px solid var(--border) !important;
+  margin: 1.6em 0 !important;
+}
+
+html[data-ag-preset] [data-markdown-root] :is(th, td) {
+  font-family: var(--ag-claude-serif) !important;
+  font-size: 14px !important;
+}
+
+html[data-ag-preset] [data-markdown-root] tr > :first-child {
+  padding-left: 16px !important;
+}
+
+html[data-ag-preset] [data-markdown-root] tr > :last-child {
+  padding-right: 16px !important;
+}
+
+html[data-ag-preset] [data-markdown-root] a {
+  color: var(--link) !important;
+  text-decoration: underline !important;
+  text-decoration-color: color-mix(in srgb, var(--link) 60%, transparent) !important;
+  text-decoration-thickness: 1.5px !important;
+  text-underline-offset: 2px !important;
+}
+
+html[data-ag-preset] [data-markdown-root] a:hover {
+  text-decoration-color: var(--link) !important;
+}
+
+/* ============================================================================
+ * 5. Harmonize Codex Settings UI Accent to Claude Terracotta
+ * ============================================================================ */
+html[data-ag-preset] :is(#ag-settings-nav-wrap, #ag-settings-pane, #ag-settings-model-menu, #ag-settings-effort-menu) {
+  --ag-s-primary: #d97757 !important;
+  --ag-s-focus: #d97757 !important;
+}
+
+html[data-ag-theme-mode="dark"] :is(#ag-settings-nav-wrap, #ag-settings-pane, #ag-settings-model-menu, #ag-settings-effort-menu) {
+  --ag-s-bg: #191919 !important;
+  --ag-s-sidebar: #1f1f1f !important;
+  --ag-s-selected: #2c2c2c !important;
+  --ag-s-card: #232323 !important;
+  --ag-s-primary: #d97757 !important;
+  --ag-s-focus: #eb9170 !important;
+}
+
+/* Harmonize telemetry status dot & hover Bento tooltip accent to Claude Terracotta */
+html[data-ag-preset] :is(#ag-live-metrics-pill, .ag-live-metrics-pill) .ag-ctx-pending-dot:not(.ag-dot-slow):not(.ag-dot-error) {
+  background-color: #d97757 !important;
+  box-shadow: 0 0 0 1.5px rgba(217, 119, 87, 0.20) !important;
+}
+
+html[data-ag-preset] :is(#ag-live-metrics-pill, .ag-live-metrics-pill) .ag-ctx-pending-dot.ag-dot-running {
+  box-shadow: 0 0 0 2px rgba(217, 119, 87, 0.28) !important;
+}
+
+html[data-ag-preset] #ag-live-metrics-tooltip {
+  --ag-tt-brand: #d97757 !important;
+  --ag-tt-lvl-color: #d97757 !important;
+  --ag-tt-lvl-new: #d97757 !important;
+  --ag-tt-lvl-cache: rgba(217, 119, 87, 0.42) !important;
+  --ag-tt-lvl-bg: rgba(217, 119, 87, 0.11) !important;
+}
+
+/* ============================================================================
+ * 6. Clawd Pixel Crab Mascot (Composer Top-Right Edge)
+ * ============================================================================ */
+#antigravity\.agentSidePanelInputBox,
+[id="antigravity.agentSidePanelInputBox"] {
+  position: relative !important;
+  overflow: visible !important;
+}
+
+.ag-claude-crab {
+  position: absolute;
+  right: 18px;
+  bottom: calc(100% - 1px);
+  z-index: 35;
+  width: 104px;
+  height: 72px;
+  pointer-events: none;
+  user-select: none;
+}
+
+.ag-claude-crab:not([data-ready="true"]) {
+  visibility: hidden;
+}
+
+.ag-claude-crab-sprite {
+  position: absolute;
+  left: calc(var(--ag-crab-x, 0) * 2px);
+  top: calc(var(--ag-crab-y, 0) * 2px);
+  width: calc(var(--ag-crab-w, 0) * 2px);
+  height: calc(var(--ag-crab-h, 0) * 2px);
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.ag-claude-crab-strip {
+  position: relative;
+  display: block;
+  width: calc(var(--ag-crab-w, 0) * 8 * 2px);
+  height: calc(var(--ag-crab-strip-h, 0) * 2px);
+  background-image: var(--ag-crab-sheet, none);
+  background-repeat: no-repeat;
+  background-size: calc(var(--ag-crab-w, 0) * 8 * 2px) auto;
+  image-rendering: pixelated;
+  will-change: transform;
+}
+
+.ag-claude-crab-strip::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--muted-foreground, #91888b);
+  -webkit-mask: var(--ag-crab-ink, none) no-repeat 0 0 / 100% 100%;
+  mask: var(--ag-crab-ink, none) no-repeat 0 0 / 100% 100%;
+  image-rendering: pixelated;
+}
+
+.ag-claude-crab-hit {
+  position: absolute;
+  left: 48px;
+  top: 40px;
+  width: 48px;
+  height: 32px;
+  pointer-events: auto;
+  cursor: pointer;
+  touch-action: none;
+}
+
+/* ============================================================================
+ * 7. Right-Side Conversation Turn Navigator Rail & Popover Card
+ * ============================================================================ */
+.ag-claude-turn-rail {
+  position: fixed;
+  right: 10px;
+  top: 46%;
+  width: 28px;
+  max-height: 240px;
+  transform: translateY(-50%);
+  z-index: 40;
+  overflow: hidden;
+  pointer-events: auto;
+  cursor: pointer;
+  user-select: none;
+}
+
+.ag-claude-turn-rail[data-fade-top="true"] {
+  -webkit-mask-image: linear-gradient(transparent 0, #000 24px, #000 100%);
+  mask-image: linear-gradient(transparent 0, #000 24px, #000 100%);
+}
+
+.ag-claude-turn-rail[data-fade-bottom="true"] {
+  -webkit-mask-image: linear-gradient(#000 0, #000 calc(100% - 24px), transparent 100%);
+  mask-image: linear-gradient(#000 0, #000 calc(100% - 24px), transparent 100%);
+}
+
+.ag-claude-turn-rail[data-fade-top="true"][data-fade-bottom="true"] {
+  -webkit-mask-image: linear-gradient(transparent 0, #000 24px, #000 calc(100% - 24px), transparent 100%);
+  mask-image: linear-gradient(transparent 0, #000 24px, #000 calc(100% - 24px), transparent 100%);
+}
+
+.ag-claude-turn-rail-track {
+  position: relative;
+  transition: transform 180ms cubic-bezier(0.2, 0, 0, 1), opacity 140ms ease;
+}
+
+.ag-claude-turn-rail[data-open="true"] .ag-claude-turn-rail-track {
+  opacity: 0.15;
+}
+
+.ag-claude-turn-rail-mark {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 24px;
+}
+
+.ag-claude-turn-rail-mark::before,
+.ag-claude-turn-nav-dash {
+  width: 20px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--muted-foreground, #91888b);
+  opacity: 0.45;
+  transform: scaleX(0.6);
+  transform-origin: 100% 50%;
+  transition: transform 140ms ease, background-color 140ms ease, opacity 140ms ease;
+}
+
+.ag-claude-turn-rail-mark::before {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 11px;
+}
+
+.ag-claude-turn-rail-mark[data-current="true"]::before,
+.ag-claude-turn-nav-row[data-current="true"] .ag-claude-turn-nav-dash {
+  background: #d97757;
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+.ag-claude-turn-nav {
+  position: fixed;
+  right: 12px;
+  top: 46%;
+  transform: translateY(-50%);
+  width: 288px;
+  max-width: calc(100vw - 32px);
+  max-height: min(360px, 60vh);
+  z-index: 45;
+  padding: 6px;
+  border-radius: 12px;
+  background: var(--card, #ffffff);
+  border: 1px solid var(--card-border, rgba(0, 0, 0, 0.08));
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.16), 0 2px 6px rgba(0, 0, 0, 0.08);
+  display: none;
+  flex-direction: column;
+}
+
+html[data-ag-theme-mode="dark"] .ag-claude-turn-nav {
+  background: #232323;
+  border-color: rgba(255, 255, 255, 0.10);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.48), 0 2px 8px rgba(0, 0, 0, 0.28);
+}
+
+.ag-claude-turn-nav[data-open="true"] {
+  display: flex;
+}
+
+.ag-claude-turn-nav-list {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: none;
+}
+
+.ag-claude-turn-nav-list::-webkit-scrollbar {
+  display: none;
+}
+
+.ag-claude-turn-nav-row {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  height: 26px;
+  padding: 0 8px;
+  border: none !important;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--muted-foreground, #70696b);
+  font-family: var(--font-sans);
+  font-size: 12.5px;
+  font-weight: 400;
+  line-height: 26px;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 120ms ease, color 120ms ease;
+}
+
+.ag-claude-turn-nav-row:hover {
+  background: rgba(128, 128, 128, 0.12);
+  color: var(--foreground);
+}
+
+.ag-claude-turn-nav-row:hover .ag-claude-turn-nav-dash {
+  background: var(--foreground);
+  opacity: 0.85;
+  transform: scaleX(0.9);
+}
+
+.ag-claude-turn-nav-row[data-current="true"] {
+  color: var(--foreground);
+  font-weight: 500;
+}
+
+.ag-claude-turn-nav-dash {
+  flex: none;
+}
+
+.ag-claude-turn-nav-label {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ============================================================================
+ * 8. Streaming Reveal, Composer Fade Mask, 0.5px Hairlines, Code/Table Cards & Width
+ * ============================================================================ */
+@keyframes agClaudeReveal {
+  from {
+    opacity: 0.72;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+html[data-ag-preset] [data-markdown-root] > :is(p, blockquote) {
+  animation: agClaudeReveal 140ms cubic-bezier(0.2, 0, 0, 1) both;
+}
+
+/* 0.5px Retina hairline dividers */
+html[data-ag-preset] :is(.bg-sidebar, aside) {
+  border-right-width: 0.5px !important;
+}
+
+/* Subtle canvas fade above main composer (inset inside 24px rounded corners) */
+html[data-ag-preset] #antigravity\.agentSidePanelInputBox::before,
+html[data-ag-preset] [id="antigravity.agentSidePanelInputBox"]::before {
+  content: "";
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: calc(100% + 1px);
+  height: 22px;
+  background: linear-gradient(to top, var(--background), transparent);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Comfortable editorial prose width on wide screens */
+html[data-ag-preset] [data-testid="conversation-view"] [data-markdown-root] {
+  max-width: min(820px, 100%);
+}
+
+/* Claude-style code blocks & tables */
+html[data-ag-preset] [data-markdown-root] pre {
+  border: 0.5px solid var(--border) !important;
+  border-radius: 12px !important;
+}
+
+html[data-ag-preset] [data-markdown-root] table {
+  border-collapse: collapse !important;
+  border: 0.5px solid var(--border) !important;
+  border-radius: 10px !important;
+  overflow: hidden;
+}
+
+html[data-ag-preset]:not([data-ag-theme-mode="dark"]) [data-markdown-root] thead :is(th, td) {
+  background-color: #f4f4f4 !important;
+}
+
+html[data-ag-theme-mode="dark"] [data-markdown-root] thead :is(th, td) {
+  background-color: #282828 !important;
+}
